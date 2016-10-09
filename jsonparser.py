@@ -3,8 +3,10 @@ import json
 with open('whole.json','r') as f:
     data = json.load(f)
 import re
+import os
 for i in range(0,len(data)):
-    outputfile = open("album" + str(i) + ".txt", "w")
+    filename = "album" + str(i) + ".txt"
+    outputfile = open(filename, "w")
     string = data[i]['desc']
     string = string[8:]
     string = string.replace("<script>","")
@@ -15,5 +17,6 @@ for i in range(0,len(data)):
     string = string.replace('\"', "")
     string = string.replace('\\',"")
     print (string, file = outputfile)
-    f.close()
+    outputfile.close()
+    os.system('mv ' + filename + ' ./albums')
 
